@@ -18,11 +18,11 @@ const translations = {
             name: 'Hachem',
             title: {
                 web: 'Web Developer',
-                app: 'App Developer',
+                app: 'Desktop Developer',
                 security: 'Cyber Security',
                 it: 'IT'
             },
-            description: 'I build secure, scalable, and performant digital solutions. From full-stack web applications to security-conscious systems, I focus on clean code, best practices, and solving complex technical challenges.',
+            description: 'I build secure, scalable, and high-performance digital solutions. From full-stack web applications to desktop software and secure systems, I focus on clean code, best practices, and solving complex technical challenges.',
             viewProjects: 'View Projects',
             contactMe: 'Contact Me',
             scroll: 'Scroll'
@@ -32,14 +32,14 @@ const translations = {
             subtitle: 'About Me',
             title: 'Building Digital Solutions with',
             titleHighlight: 'Security in Mind',
-            description1: 'I am a developer with a passion for creating robust, secure, and user-friendly applications. My approach combines technical expertise with a strong focus on security best practices.',
-            description2: 'From designing responsive web interfaces to understanding network security fundamentals, I bring a comprehensive perspective to every project. I believe in writing clean, maintainable code that stands the test of time.',
+            description1: 'I am a developer passionate about creating robust, secure, and user-friendly applications. My approach combines technical expertise with a strong focus on security best practices.',
+            description2: 'From designing responsive web interfaces to building desktop applications and understanding network security fundamentals, I bring a comprehensive perspective to every project.',
             focusTitle: 'Core Focus Areas',
             focuses: [
                 'Full-stack Web Development',
-                'Application Development',
-                'Cybersecurity Awareness & Secure Coding',
-                'IT Systems & Networking Fundamentals'
+                'Desktop Application Development',
+                'Cybersecurity & Secure Coding',
+                'IT Systems & Networking'
             ],
             devTitle: 'Developer & Security Enthusiast',
             skillAreas: 'Skill Areas',
@@ -54,7 +54,7 @@ const translations = {
         projects: {
             subtitle: 'Portfolio',
             title: 'Featured Projects',
-            description: 'A collection of projects showcasing my work across web development, application development, security, and IT systems.'
+            description: 'A collection of projects showcasing my work in web development, desktop applications, security, and IT systems.'
         },
         // Contact
         contact: {
@@ -87,82 +87,82 @@ const translations = {
     ar: {
         // Navbar
         nav: {
-            about: 'نبذة عني',
+            about: 'من أنا',
             skills: 'المهارات',
-            projects: 'المشاريع',
-            contact: 'تواصل معي'
+            projects: 'أعمالي',
+            contact: 'اتصل بي'
         },
         // Hero
         hero: {
-            badge: 'تطوير آمن أولاً',
+            badge: 'التطوير الآمن',
             greeting: 'مرحباً، أنا',
             name: 'هاشم',
             title: {
-                web: 'مطور ويب',
-                app: 'مطور تطبيقات',
+                web: 'مطور مواقع',
+                app: 'مطور برامج',
                 security: 'أمن سيبراني',
                 it: 'تقنية معلومات'
             },
-            description: 'أبني حلولاً رقمية آمنة وقابلة للتطوير وعالية الأداء. من تطبيقات الويب الكاملة إلى الأنظمة الآمنة، أركز على الكود النظيف وأفضل الممارسات وحل التحديات التقنية المعقدة.',
-            viewProjects: 'عرض المشاريع',
+            description: 'أقوم ببناء حلول رقمية آمنة وعالية الأداء. من تطوير مواقع الويب إلى برامج سطح المكتب والأنظمة الآمنة، أركز على كتابة كود نظيف وتطبيق أفضل الممارسات.',
+            viewProjects: 'عرض أعمالي',
             contactMe: 'تواصل معي',
-            scroll: 'اسحب للأسفل'
+            scroll: 'انزل للأسفل'
         },
         // About
         about: {
-            subtitle: 'نبذة عني',
-            title: 'بناء حلول رقمية مع',
-            titleHighlight: 'الأمان في الاعتبار',
-            description1: 'أنا مطور شغوف بإنشاء تطبيقات قوية وآمنة وسهلة الاستخدام. يجمع نهجي بين الخبرة التقنية والتركيز القوي على أفضل ممارسات الأمان.',
-            description2: 'من تصميم واجهات ويب متجاوبة إلى فهم أساسيات أمن الشبكات، أقدم منظوراً شاملاً لكل مشروع. أؤمن بكتابة كود نظيف وقابل للصيانة يصمد أمام اختبار الزمن.',
-            focusTitle: 'مجالات التركيز الأساسية',
+            subtitle: 'من أنا',
+            title: 'بناء حلول رقمية',
+            titleHighlight: 'بأمان عالي',
+            description1: 'أنا مطور برمجيات متخصص في إنشاء تطبيقات قوية وآمنة وسهلة الاستخدام. أجمع بين الخبرة التقنية والتركيز على أمان البرمجيات.',
+            description2: 'من تصميم مواقع الويب إلى بناء برامج سطح المكتب وفهم أساسيات أمن الشبكات، أقدم رؤية شاملة لكل مشروع أعمل عليه.',
+            focusTitle: 'مجالات تخصصي',
             focuses: [
-                'تطوير الويب الكامل',
-                'تطوير التطبيقات',
-                'الوعي بالأمن السيبراني والبرمجة الآمنة',
-                'أنظمة تقنية المعلومات وأساسيات الشبكات'
+                'تطوير مواقع الويب',
+                'تطوير برامج سطح المكتب',
+                'الأمن السيبراني والبرمجة الآمنة',
+                'تقنية المعلومات والشبكات'
             ],
-            devTitle: 'مطور ومتحمس للأمان',
+            devTitle: 'مطور برمجيات',
             skillAreas: 'مجالات المهارات',
-            learning: 'التعلم'
+            learning: 'أتعلم دائماً'
         },
         // Skills
         skills: {
             subtitle: 'المهارات والخبرات',
-            title: 'التقنيات التي أعمل بها'
+            title: 'التقنيات التي أستخدمها'
         },
         // Projects
         projects: {
             subtitle: 'معرض الأعمال',
-            title: 'المشاريع المميزة',
-            description: 'مجموعة من المشاريع تعرض عملي في تطوير الويب وتطوير التطبيقات والأمان وأنظمة تقنية المعلومات.'
+            title: 'مشاريعي المميزة',
+            description: 'مجموعة من المشاريع التي تعرض خبرتي في تطوير المواقع وبرامج سطح المكتب والأمن السيبراني.'
         },
         // Contact
         contact: {
             subtitle: 'تواصل معي',
-            title: 'لنعمل',
-            titleHighlight: 'معاً',
-            description: 'هل لديك مشروع في ذهنك أو تريد مناقشة فرصة؟ أنا دائماً منفتح على الأفكار الجديدة والتعاون. لا تتردد في التواصل من خلال النموذج أو التواصل معي على وسائل التواصل الاجتماعي.',
-            connectTitle: 'تواصل معي',
+            title: 'هل لديك مشروع؟',
+            titleHighlight: 'لنعمل معاً',
+            description: 'هل تريد مناقشة فكرة أو مشروع؟ أنا مستعد للتعاون معك. تواصل معي عبر النموذج أو وسائل التواصل الاجتماعي.',
+            connectTitle: 'تابعني على',
             form: {
-                name: 'اسمك',
-                namePlaceholder: 'محمد أحمد',
+                name: 'الاسم الكامل',
+                namePlaceholder: 'أدخل اسمك',
                 email: 'البريد الإلكتروني',
                 emailPlaceholder: 'example@email.com',
                 message: 'رسالتك',
-                messagePlaceholder: 'أخبرني عن مشروعك...',
-                send: 'إرسال الرسالة',
+                messagePlaceholder: 'اكتب رسالتك هنا...',
+                send: 'إرسال',
                 sending: 'جاري الإرسال...',
-                success: '✓ تم إرسال الرسالة بنجاح! سأتواصل معك قريباً.',
-                error: '✗ فشل إرسال الرسالة. يرجى المحاولة مرة أخرى أو التواصل معي مباشرة.'
+                success: '✓ تم إرسال رسالتك بنجاح! سأرد عليك قريباً.',
+                error: '✗ فشل الإرسال. حاول مرة أخرى أو تواصل معي مباشرة.'
             }
         },
         // Footer
         footer: {
             tagline: 'بناء حلول رقمية آمنة',
-            copyright: 'جميع الحقوق محفوظة.',
+            copyright: 'جميع الحقوق محفوظة',
             madeWith: 'صُنع بـ',
-            using: 'باستخدام React و TailwindCSS'
+            using: 'React و TailwindCSS'
         }
     }
 };

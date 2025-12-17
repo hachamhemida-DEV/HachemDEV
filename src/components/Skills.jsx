@@ -5,7 +5,7 @@ import { skillsData } from '../data/skills';
 import { useLanguage } from '../context/LanguageContext';
 
 const Skills = () => {
-    const { t, isRTL } = useLanguage();
+    const { t, isRTL, language } = useLanguage();
 
     const containerVariants = {
         hidden: { opacity: 0 },
@@ -64,7 +64,7 @@ const Skills = () => {
                                     <category.icon className="w-6 h-6 text-white" />
                                 </div>
                                 <h4 className="text-xl font-bold text-gray-900 dark:text-white">
-                                    {category.title}
+                                    {language === 'ar' ? category.titleAr : category.title}
                                 </h4>
                             </div>
 
