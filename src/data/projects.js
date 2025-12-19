@@ -34,20 +34,32 @@ export const projectsData = [
         technologies: ['PHP', 'MySQL', 'HTML/CSS', 'JavaScript'],
         github: '#',
         live: '#'
+    },
+    {
+        id: 4,
+        title: 'Developer Portfolio',
+        titleAr: 'الموقع الشخصي للمطور',
+        description: 'Modern, responsive portfolio website with Black & Red theme, animated backgrounds, scroll reveal effects, and multi-language support (EN/AR).',
+        descriptionAr: 'موقع شخصي حديث ومتجاوب بتصميم أسود وأحمر مع خلفيات متحركة وتأثيرات التمرير ودعم متعدد اللغات.',
+        domain: 'Web',
+        domainAr: 'ويب',
+        technologies: ['React', 'Vite', 'TailwindCSS', 'Framer Motion'],
+        github: '#',
+        live: '#'
     }
 ];
 
 export const getDomainColor = (domain) => {
     const colors = {
-        Web: 'bg-blue-500/20 text-blue-400 border-blue-500/30',
-        App: 'bg-purple-500/20 text-purple-400 border-purple-500/30',
-        Security: 'bg-green-500/20 text-green-400 border-green-500/30',
-        IT: 'bg-orange-500/20 text-orange-400 border-orange-500/30',
+        Web: 'bg-red-600/20 text-red-400 border-red-500/30',
+        App: 'bg-red-500/20 text-red-400 border-red-500/30',
+        Security: 'bg-red-700/20 text-red-400 border-red-500/30',
+        IT: 'bg-red-600/20 text-red-400 border-red-500/30',
         // Arabic domains
-        'ويب': 'bg-blue-500/20 text-blue-400 border-blue-500/30',
-        'تطبيق': 'bg-purple-500/20 text-purple-400 border-purple-500/30',
-        'أمان': 'bg-green-500/20 text-green-400 border-green-500/30',
-        'تقنية': 'bg-orange-500/20 text-orange-400 border-orange-500/30'
+        'ويب': 'bg-red-600/20 text-red-400 border-red-500/30',
+        'تطبيق': 'bg-red-500/20 text-red-400 border-red-500/30',
+        'أمان': 'bg-red-700/20 text-red-400 border-red-500/30',
+        'تقنية': 'bg-red-600/20 text-red-400 border-red-500/30'
     };
     return colors[domain] || colors.Web;
 };

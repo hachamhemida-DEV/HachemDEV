@@ -1,147 +1,132 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { HiMenu, HiX, HiSun, HiMoon, HiGlobeAlt } from 'react-icons/hi';
+import { HiMenu, HiX, HiSun, HiMoon, HiGlobe } from 'react-icons/hi';
 import { useTheme } from '../../context/ThemeContext';
 import { useLanguage } from '../../context/LanguageContext';
 
+const navLinks = [
+    { id: 'about', labelKey: 'nav.about' },
+    { id: 'skills', labelKey: 'nav.skills' },
+    { id: 'projects', labelKey: 'nav.projects' },
+    { id: 'contact', labelKey: 'nav.contact' },
+];
+
 const Navbar = () => {
-    const [isOpen, setIsOpen] = useState(false);
-    const [scrolled, setScrolled] = useState(false);
     const { darkMode, toggleDarkMode } = useTheme();
     const { language, toggleLanguage, t, isRTL } = useLanguage();
-
-    const navLinks = [
-        { name: t('nav.about'), href: '#about' },
-        { name: t('nav.skills'), href: '#skills' },
-        { name: t('nav.projects'), href: '#projects' },
-        { name: t('nav.contact'), href: '#contact' },
-    ];
+    const [isOpen, setIsOpen] = useState(false);
+    const [scrolled, setScrolled] = useState(false);
 
     useEffect(() => {
-        const handleScroll = () => {
-            setScrolled(window.scrollY > 50);
-        };
+        const handleScroll = () => setScrolled(window.scrollY > 50);
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    const handleNavClick = () => {
-        setIsOpen(false);
-    };
-
     return (
-        <motion.nav
-            initial={{ y: -100 }}
-            animate={{ y: 0 }}
-            transition={{ duration: 0.5 }}
+        <nav
             className={`
-        fixed top-0 left-0 right-0 z-50 transition-all duration-300
-        ${scrolled
-                    ? 'bg-white/80 dark:bg-gray-900/80 backdrop-blur-lg shadow-lg'
-                    : 'bg-transparent'
-                }
-      `}
+                fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 lg:px-8 py-4
+                transition-all duration-300
+                ${scrolled ? 'backdrop-blur-lg' : ''}
+            `}
+            style={{
+                backgroundColor: scrolled
+                    ? (darkMode ? 'rgba(11, 11, 11, 0.95)' : 'rgba(255, 255, 255, 0.95)')
+                    : 'transparent',
+                borderBottom: scrolled ? '1px solid var(--color-border)' : 'none',
+                boxShadow: scrolled ? 'var(--shadow-sm)' : 'none'
+            }}
         >
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="flex items-center justify-between h-16 md:h-20">
-                    {/* Logo */}
-                    <motion.a
-                        href="#"
-                        className="text-xl md:text-2xl font-bold gradient-text"
-                        whileHover={{ scale: 1.05 }}
+            <div className="max-w-7xl mx-auto flex items-center justify-between">
+                {/* Logo */}
+                <motion.a
+                    href="#"
+                    className="text-2xl font-bold gradient-text"
+                    whileHover={{ scale: 1.05 }}
+                >
+                    {isRTL ? '</ هاشم >' : '<Hachem />'}
+                </motion.a>
+
+                {/* Desktop Navigation */}
+                <div className={`hidden md:flex items-center gap-8 ${isRTL ? 'flex-row-reverse' : ''}`}>
+                    {navLinks.map((link) => (
+                        <motion.a
+                            key={link.id}
+                            href={`#${link.id}`}
+                            className="relative font-medium transition-colors"
+                            style={{ color: 'var(--color-text-secondary)' }}
+                            whileHover={{ color: 'var(--color-accent)' }}
+                        >
+                            {t(link.labelKey)}
+                            <motion.span
+                                className="absolute -bottom-1 left-0 h-0.5 w-0"
+                                style={{ backgroundColor: 'var(--color-accent)' }}
+                                whileHover={{ width: '100%' }}
+                                transition={{ duration: 0.2 }}
+                            />
+                        </motion.a>
+                    ))}
+                </div>
+
+                {/* Right Side Buttons */}
+                <div className={`hidden md:flex items-center gap-4 ${isRTL ? 'flex-row-reverse' : ''}`}>
+                    {/* Theme Toggle */}
+                    <motion.button
+                        onClick={toggleDarkMode}
+                        className="p-2 rounded-lg transition-colors"
+                        style={{
+                            color: 'var(--color-text-secondary)',
+                            backgroundColor: 'var(--color-bg-elevated)'
+                        }}
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.95 }}
+                        aria-label="Toggle theme"
                     >
-                        {isRTL ? '</ هاشم >' : '<Hachem />'}
-                    </motion.a>
+                        {darkMode ? <HiSun className="w-5 h-5" /> : <HiMoon className="w-5 h-5" />}
+                    </motion.button>
 
-                    {/* Desktop Navigation */}
-                    <div className={`hidden md:flex items-center gap-8 ${isRTL ? 'flex-row-reverse' : ''}`}>
-                        {navLinks.map((link) => (
-                            <motion.a
-                                key={link.href}
-                                href={link.href}
-                                className="text-gray-600 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors font-medium"
-                                whileHover={{ y: -2 }}
-                            >
-                                {link.name}
-                            </motion.a>
-                        ))}
+                    {/* Language Toggle */}
+                    <motion.button
+                        onClick={toggleLanguage}
+                        className="flex items-center gap-2 px-3 py-2 rounded-lg font-medium text-sm transition-colors"
+                        style={{
+                            color: 'var(--color-text-secondary)',
+                            backgroundColor: 'var(--color-bg-elevated)'
+                        }}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                    >
+                        <HiGlobe className="w-4 h-4" />
+                        {language === 'en' ? 'عربي' : 'EN'}
+                    </motion.button>
+                </div>
 
-                        {/* Language Toggle */}
-                        <motion.button
-                            onClick={toggleLanguage}
-                            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors text-sm font-medium"
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            aria-label={language === 'en' ? 'Switch to Arabic' : 'Switch to English'}
-                        >
-                            <HiGlobeAlt className="w-4 h-4" />
-                            <span>{language === 'en' ? 'AR' : 'EN'}</span>
-                        </motion.button>
+                {/* Mobile Menu Button */}
+                <div className="md:hidden flex items-center gap-3">
+                    <motion.button
+                        onClick={toggleDarkMode}
+                        className="p-2 rounded-lg"
+                        style={{
+                            color: 'var(--color-text-secondary)',
+                            backgroundColor: 'var(--color-bg-elevated)'
+                        }}
+                        whileTap={{ scale: 0.95 }}
+                    >
+                        {darkMode ? <HiSun className="w-5 h-5" /> : <HiMoon className="w-5 h-5" />}
+                    </motion.button>
 
-                        {/* Theme Toggle */}
-                        <motion.button
-                            onClick={toggleDarkMode}
-                            className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
-                            whileHover={{ scale: 1.1 }}
-                            whileTap={{ scale: 0.9 }}
-                            aria-label={darkMode ? 'Switch to light mode' : 'Switch to dark mode'}
-                        >
-                            <AnimatePresence mode="wait">
-                                {darkMode ? (
-                                    <motion.div
-                                        key="sun"
-                                        initial={{ rotate: -90, opacity: 0 }}
-                                        animate={{ rotate: 0, opacity: 1 }}
-                                        exit={{ rotate: 90, opacity: 0 }}
-                                        transition={{ duration: 0.2 }}
-                                    >
-                                        <HiSun className="w-5 h-5" />
-                                    </motion.div>
-                                ) : (
-                                    <motion.div
-                                        key="moon"
-                                        initial={{ rotate: 90, opacity: 0 }}
-                                        animate={{ rotate: 0, opacity: 1 }}
-                                        exit={{ rotate: -90, opacity: 0 }}
-                                        transition={{ duration: 0.2 }}
-                                    >
-                                        <HiMoon className="w-5 h-5" />
-                                    </motion.div>
-                                )}
-                            </AnimatePresence>
-                        </motion.button>
-                    </div>
-
-                    {/* Mobile Menu Button */}
-                    <div className="flex items-center gap-3 md:hidden">
-                        {/* Language Toggle Mobile */}
-                        <motion.button
-                            onClick={toggleLanguage}
-                            className="px-2 py-1 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 text-sm font-medium"
-                            whileTap={{ scale: 0.9 }}
-                        >
-                            {language === 'en' ? 'AR' : 'EN'}
-                        </motion.button>
-
-                        <motion.button
-                            onClick={toggleDarkMode}
-                            className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300"
-                            whileTap={{ scale: 0.9 }}
-                            aria-label={darkMode ? 'Switch to light mode' : 'Switch to dark mode'}
-                        >
-                            {darkMode ? <HiSun className="w-5 h-5" /> : <HiMoon className="w-5 h-5" />}
-                        </motion.button>
-
-                        <motion.button
-                            onClick={() => setIsOpen(!isOpen)}
-                            className="p-2 rounded-lg text-gray-600 dark:text-gray-300"
-                            whileTap={{ scale: 0.9 }}
-                            aria-label="Toggle menu"
-                            aria-expanded={isOpen}
-                        >
-                            {isOpen ? <HiX className="w-6 h-6" /> : <HiMenu className="w-6 h-6" />}
-                        </motion.button>
-                    </div>
+                    <motion.button
+                        onClick={() => setIsOpen(!isOpen)}
+                        className="p-2 rounded-lg"
+                        style={{
+                            color: 'var(--color-text-primary)',
+                            backgroundColor: 'var(--color-bg-elevated)'
+                        }}
+                        whileTap={{ scale: 0.95 }}
+                    >
+                        {isOpen ? <HiX className="w-6 h-6" /> : <HiMenu className="w-6 h-6" />}
+                    </motion.button>
                 </div>
             </div>
 
@@ -152,27 +137,45 @@ const Navbar = () => {
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: 'auto' }}
                         exit={{ opacity: 0, height: 0 }}
-                        className="md:hidden bg-white/95 dark:bg-gray-900/95 backdrop-blur-lg border-t border-gray-200 dark:border-gray-800"
+                        className="md:hidden mt-4 rounded-2xl overflow-hidden"
+                        style={{
+                            backgroundColor: 'var(--color-bg-card)',
+                            border: '1px solid var(--color-border)'
+                        }}
                     >
-                        <div className="px-4 py-4 space-y-2">
-                            {navLinks.map((link, index) => (
+                        <div className="p-4 space-y-2">
+                            {navLinks.map((link) => (
                                 <motion.a
-                                    key={link.href}
-                                    href={link.href}
-                                    onClick={handleNavClick}
-                                    className={`block py-3 px-4 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors ${isRTL ? 'text-right' : 'text-left'}`}
-                                    initial={{ opacity: 0, x: isRTL ? 20 : -20 }}
-                                    animate={{ opacity: 1, x: 0 }}
-                                    transition={{ delay: index * 0.1 }}
+                                    key={link.id}
+                                    href={`#${link.id}`}
+                                    className={`block py-3 px-4 rounded-lg font-medium transition-colors ${isRTL ? 'text-right' : ''}`}
+                                    style={{ color: 'var(--color-text-secondary)' }}
+                                    onClick={() => setIsOpen(false)}
+                                    whileHover={{
+                                        backgroundColor: 'var(--color-accent-muted)',
+                                        color: 'var(--color-accent)'
+                                    }}
                                 >
-                                    {link.name}
+                                    {t(link.labelKey)}
                                 </motion.a>
                             ))}
+                            <motion.button
+                                onClick={toggleLanguage}
+                                className={`w-full py-3 px-4 rounded-lg font-medium flex items-center gap-2 ${isRTL ? 'flex-row-reverse justify-end' : ''}`}
+                                style={{ color: 'var(--color-text-secondary)' }}
+                                whileHover={{
+                                    backgroundColor: 'var(--color-accent-muted)',
+                                    color: 'var(--color-accent)'
+                                }}
+                            >
+                                <HiGlobe className="w-4 h-4" />
+                                {language === 'en' ? 'العربية' : 'English'}
+                            </motion.button>
                         </div>
                     </motion.div>
                 )}
             </AnimatePresence>
-        </motion.nav>
+        </nav>
     );
 };
 

@@ -40,9 +40,19 @@ const Footer = () => {
     };
 
     return (
-        <footer className="relative bg-gray-900 dark:bg-black text-white">
-            {/* Top decoration */}
-            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-purple-500 to-transparent" />
+        <footer
+            className="relative"
+            style={{
+                backgroundColor: 'var(--color-bg-primary)',
+                color: 'var(--color-text-primary)',
+                borderTop: '1px solid var(--color-border)'
+            }}
+        >
+            {/* Top decoration - Gradient line */}
+            <div
+                className="absolute top-0 left-0 right-0 h-px"
+                style={{ background: 'var(--gradient-accent)' }}
+            />
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
                 <div className={`flex flex-col md:flex-row items-center justify-between gap-8 ${isRTL ? 'md:flex-row-reverse' : ''}`}>
@@ -56,7 +66,7 @@ const Footer = () => {
                         <a href="#" className="text-2xl font-bold gradient-text">
                             {isRTL ? '</ هاشم >' : '<Hachem />'}
                         </a>
-                        <p className="text-gray-400 mt-2 text-sm">
+                        <p className="mt-2 text-sm" style={{ color: 'var(--color-text-muted)' }}>
                             {t('footer.tagline')}
                         </p>
                     </motion.div>
@@ -75,8 +85,13 @@ const Footer = () => {
                                 href={social.url}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="p-2 rounded-lg text-gray-400 hover:text-white hover:bg-white/10 transition-all"
-                                whileHover={{ scale: 1.1, y: -2 }}
+                                className="p-2 rounded-lg transition-all"
+                                style={{ color: 'var(--color-text-muted)' }}
+                                whileHover={{
+                                    scale: 1.1,
+                                    y: -2,
+                                    color: 'var(--color-accent)'
+                                }}
                                 whileTap={{ scale: 0.95 }}
                                 aria-label={`Visit my ${social.name} profile`}
                             >
@@ -92,7 +107,12 @@ const Footer = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.2 }}
-                        className="p-3 rounded-xl bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:bg-white/10 hover:border-white/20 transition-all"
+                        className="p-3 rounded-xl transition-all"
+                        style={{
+                            backgroundColor: 'var(--color-bg-card)',
+                            border: '1px solid var(--color-border)',
+                            color: 'var(--color-text-muted)'
+                        }}
                         whileHover={{ y: -3 }}
                         whileTap={{ scale: 0.95 }}
                         aria-label="Scroll to top"
@@ -102,19 +122,20 @@ const Footer = () => {
                 </div>
 
                 {/* Divider */}
-                <div className="my-8 h-px bg-gray-800" />
+                <div className="my-8 h-px" style={{ backgroundColor: 'var(--color-border)' }} />
 
                 {/* Copyright */}
                 <motion.div
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true }}
-                    className={`flex flex-col sm:flex-row items-center justify-center gap-2 text-gray-500 text-sm ${isRTL ? 'sm:flex-row-reverse' : ''}`}
+                    className={`flex flex-col sm:flex-row items-center justify-center gap-2 text-sm ${isRTL ? 'sm:flex-row-reverse' : ''}`}
+                    style={{ color: 'var(--color-text-muted)' }}
                 >
                     <span>© {currentYear} {isRTL ? 'هاشم' : 'Hachem'}. {t('footer.copyright')}</span>
                     <span className="hidden sm:inline">•</span>
                     <span className={`flex items-center gap-1 ${isRTL ? 'flex-row-reverse' : ''}`}>
-                        {t('footer.madeWith')} <HiHeart className="w-4 h-4 text-red-500" /> {t('footer.using')}
+                        {t('footer.madeWith')} <HiHeart className="w-4 h-4" style={{ color: 'var(--color-accent)' }} /> {t('footer.using')}
                     </span>
                 </motion.div>
             </div>

@@ -1,10 +1,10 @@
 import { motion } from 'framer-motion';
 import SectionWrapper from './common/SectionWrapper';
+import { ScrollReveal, ScrollRevealItem } from './common/ScrollReveal';
 import { HiCode, HiDeviceMobile, HiShieldCheck, HiServer } from 'react-icons/hi';
 import { useLanguage } from '../context/LanguageContext';
 
 const focusIcons = [HiCode, HiDeviceMobile, HiShieldCheck, HiServer];
-const focusColors = ['text-blue-500', 'text-purple-500', 'text-green-500', 'text-orange-500'];
 
 const About = () => {
     const { t, isRTL } = useLanguage();
@@ -14,103 +14,134 @@ const About = () => {
         <SectionWrapper id="about">
             <div className={`grid lg:grid-cols-2 gap-12 lg:gap-16 items-center ${isRTL ? 'lg:grid-flow-dense' : ''}`}>
                 {/* Image/Visual */}
-                <motion.div
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
-                    className={`relative ${isRTL ? 'lg:col-start-2' : ''}`}
-                >
-                    <div className="relative w-full aspect-square max-w-md mx-auto">
-                        {/* Decorative elements */}
-                        <div className="absolute inset-0 bg-gradient-to-br from-purple-500 to-blue-500 rounded-3xl rotate-6 opacity-20" />
-                        <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-3xl -rotate-3 opacity-20" />
+                <ScrollReveal direction="left" delay={0.1}>
+                    <div className={`relative ${isRTL ? 'lg:col-start-2' : ''}`}>
+                        <div className="relative w-full aspect-square max-w-md mx-auto">
+                            {/* Decorative elements */}
+                            <div
+                                className="absolute inset-0 rounded-3xl rotate-6"
+                                style={{ background: 'var(--gradient-glow)', opacity: 0.5 }}
+                            />
+                            <div
+                                className="absolute inset-0 rounded-3xl -rotate-3"
+                                style={{ background: 'var(--gradient-glow)', opacity: 0.3 }}
+                            />
 
-                        {/* Main content box */}
-                        <div className="relative h-full bg-white dark:bg-gray-800 rounded-3xl p-8 flex flex-col justify-center items-center shadow-2xl border border-gray-200 dark:border-gray-700">
-                            <div className="text-6xl mb-4">👨‍💻</div>
-                            <div className="text-center">
-                                <div className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
-                                    {t('hero.name')}
+                            {/* Main content box */}
+                            <div
+                                className="relative h-full rounded-3xl p-8 flex flex-col justify-center items-center"
+                                style={{
+                                    backgroundColor: 'var(--color-bg-card)',
+                                    border: '1px solid var(--color-border)',
+                                    boxShadow: 'var(--shadow-lg)'
+                                }}
+                            >
+                                <div className="text-6xl mb-4">👨‍💻</div>
+                                <div className="text-center">
+                                    <div
+                                        className="text-2xl font-bold mb-2"
+                                        style={{ color: 'var(--color-text-primary)' }}
+                                    >
+                                        {t('hero.name')}
+                                    </div>
+                                    <div style={{ color: 'var(--color-text-muted)' }} className="font-medium">
+                                        {t('about.devTitle')}
+                                    </div>
                                 </div>
-                                <div className="text-gray-500 dark:text-gray-400 font-medium">
-                                    {t('about.devTitle')}
-                                </div>
-                            </div>
 
-                            {/* Stats */}
-                            <div className="grid grid-cols-2 gap-4 mt-8 w-full">
-                                <div className="text-center p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl">
-                                    <div className="text-2xl font-bold gradient-text">4+</div>
-                                    <div className="text-sm text-gray-500 dark:text-gray-400">{t('about.skillAreas')}</div>
-                                </div>
-                                <div className="text-center p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl">
-                                    <div className="text-2xl font-bold gradient-text">∞</div>
-                                    <div className="text-sm text-gray-500 dark:text-gray-400">{t('about.learning')}</div>
+                                {/* Stats */}
+                                <div className="grid grid-cols-2 gap-4 mt-8 w-full">
+                                    <div
+                                        className="text-center p-4 rounded-xl"
+                                        style={{
+                                            backgroundColor: 'var(--color-bg-elevated)',
+                                            border: '1px solid var(--color-border)'
+                                        }}
+                                    >
+                                        <div className="text-2xl font-bold gradient-text">4+</div>
+                                        <div className="text-sm" style={{ color: 'var(--color-text-muted)' }}>
+                                            {t('about.skillAreas')}
+                                        </div>
+                                    </div>
+                                    <div
+                                        className="text-center p-4 rounded-xl"
+                                        style={{
+                                            backgroundColor: 'var(--color-bg-elevated)',
+                                            border: '1px solid var(--color-border)'
+                                        }}
+                                    >
+                                        <div className="text-2xl font-bold gradient-text">∞</div>
+                                        <div className="text-sm" style={{ color: 'var(--color-text-muted)' }}>
+                                            {t('about.learning')}
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </motion.div>
+                </ScrollReveal>
 
                 {/* Content */}
                 <div className={isRTL ? 'lg:col-start-1 lg:row-start-1' : ''}>
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.5 }}
-                    >
-                        <h2 className={`text-sm font-semibold text-purple-600 dark:text-purple-400 uppercase tracking-wider mb-3 ${isRTL ? 'text-right' : ''}`}>
+                    <ScrollReveal direction="right" delay={0.2}>
+                        <h2
+                            className={`text-sm font-semibold uppercase tracking-wider mb-3 ${isRTL ? 'text-right' : ''}`}
+                            style={{ color: 'var(--color-accent)' }}
+                        >
                             {t('about.subtitle')}
                         </h2>
-                        <h3 className={`text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6 ${isRTL ? 'text-right' : ''}`}>
+                        <h3
+                            className={`text-3xl md:text-4xl font-bold mb-6 ${isRTL ? 'text-right' : ''}`}
+                            style={{ color: 'var(--color-text-primary)' }}
+                        >
                             {t('about.title')}{' '}
                             <span className="gradient-text">{t('about.titleHighlight')}</span>
                         </h3>
-                    </motion.div>
+                    </ScrollReveal>
 
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.5, delay: 0.1 }}
-                        className={`space-y-4 text-gray-600 dark:text-gray-400 text-lg leading-relaxed mb-8 ${isRTL ? 'text-right' : ''}`}
-                    >
-                        <p>{t('about.description1')}</p>
-                        <p>{t('about.description2')}</p>
-                    </motion.div>
+                    <ScrollReveal direction="up" delay={0.3}>
+                        <div
+                            className={`space-y-4 text-lg leading-relaxed mb-8 ${isRTL ? 'text-right' : ''}`}
+                            style={{ color: 'var(--color-text-secondary)' }}
+                        >
+                            <p>{t('about.description1')}</p>
+                            <p>{t('about.description2')}</p>
+                        </div>
+                    </ScrollReveal>
 
-                    {/* Focus areas */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.5, delay: 0.2 }}
-                        className="space-y-3"
-                    >
-                        <h4 className={`text-sm font-semibold text-gray-900 dark:text-white uppercase tracking-wider mb-4 ${isRTL ? 'text-right' : ''}`}>
+                    {/* Focus areas with staggered animation */}
+                    <ScrollReveal delay={0.4} staggerChildren>
+                        <h4
+                            className={`text-sm font-semibold uppercase tracking-wider mb-4 ${isRTL ? 'text-right' : ''}`}
+                            style={{ color: 'var(--color-text-primary)' }}
+                        >
                             {t('about.focusTitle')}
                         </h4>
-                        {focuses.map((focus, index) => {
-                            const Icon = focusIcons[index];
-                            return (
-                                <motion.div
-                                    key={index}
-                                    initial={{ opacity: 0, x: isRTL ? 20 : -20 }}
-                                    whileInView={{ opacity: 1, x: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ duration: 0.3, delay: 0.1 * index }}
-                                    className={`flex items-center gap-3 p-3 rounded-lg bg-gray-100 dark:bg-gray-800/50 hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors ${isRTL ? 'flex-row-reverse' : ''}`}
-                                >
-                                    <Icon className={`w-5 h-5 ${focusColors[index]} shrink-0`} />
-                                    <span className={`text-gray-700 dark:text-gray-300 font-medium ${isRTL ? 'text-right' : ''}`}>
-                                        {focus}
-                                    </span>
-                                </motion.div>
-                            );
-                        })}
-                    </motion.div>
+                        <div className="space-y-3">
+                            {focuses.map((focus, index) => {
+                                const Icon = focusIcons[index];
+                                return (
+                                    <ScrollRevealItem key={index}>
+                                        <div
+                                            className={`flex items-center gap-3 p-3 rounded-lg transition-colors ${isRTL ? 'flex-row-reverse' : ''}`}
+                                            style={{
+                                                backgroundColor: 'var(--color-bg-card)',
+                                                border: '1px solid var(--color-border)'
+                                            }}
+                                        >
+                                            <Icon className="w-5 h-5 shrink-0" style={{ color: 'var(--color-accent)' }} />
+                                            <span
+                                                className={`font-medium ${isRTL ? 'text-right' : ''}`}
+                                                style={{ color: 'var(--color-text-secondary)' }}
+                                            >
+                                                {focus}
+                                            </span>
+                                        </div>
+                                    </ScrollRevealItem>
+                                );
+                            })}
+                        </div>
+                    </ScrollReveal>
                 </div>
             </div>
         </SectionWrapper>

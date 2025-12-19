@@ -15,14 +15,13 @@ const translations = {
         hero: {
             badge: 'Security-First Development',
             greeting: "Hi, I'm",
-            name: 'Hachem',
+            name: 'Hachem tadj eddin',
             title: {
                 web: 'Web Developer',
                 app: 'Desktop Developer',
                 security: 'Cyber Security',
-                it: 'IT'
             },
-            description: 'I build secure, scalable, and high-performance digital solutions. From full-stack web applications to desktop software and secure systems, I focus on clean code, best practices, and solving complex technical challenges.',
+            description: 'I build secure, scalable, and high-performance digital solutions with my team. From full-stack web applications to desktop software and secure systems, I focus on clean code, best practices, and solving complex technical challenges.',
             viewProjects: 'View Projects',
             contactMe: 'Contact Me',
             scroll: 'Scroll'
@@ -48,13 +47,13 @@ const translations = {
         // Skills
         skills: {
             subtitle: 'Skills & Expertise',
-            title: 'Technologies I Work With'
+            title: 'Technologies We Work With'
         },
         // Projects
         projects: {
             subtitle: 'Portfolio',
             title: 'Featured Projects',
-            description: 'A collection of projects showcasing my work in web development, desktop applications, security, and IT systems.'
+            description: 'A collection of projects showcasing our work in web development, desktop applications, security, and IT systems.'
         },
         // Contact
         contact: {
@@ -96,14 +95,13 @@ const translations = {
         hero: {
             badge: 'التطوير الآمن',
             greeting: 'مرحباً، أنا',
-            name: 'هاشم',
+            name: 'تاج الدين هاشم',
             title: {
                 web: 'مطور مواقع',
                 app: 'مطور برامج',
                 security: 'أمن سيبراني',
-                it: 'تقنية معلومات'
             },
-            description: 'أقوم ببناء حلول رقمية آمنة وعالية الأداء. من تطوير مواقع الويب إلى برامج سطح المكتب والأنظمة الآمنة، أركز على كتابة كود نظيف وتطبيق أفضل الممارسات.',
+            description: 'أقوم ببناء حلول رقمية آمنة وعالية الأداء. من تطوير مواقع الويب إلى برامج سطح المكتب والأنظمة الآمنة مع فريقي ، نركز على كتابة كود نظيف وتطبيق أفضل الممارسات.',
             viewProjects: 'عرض أعمالي',
             contactMe: 'تواصل معي',
             scroll: 'انزل للأسفل'
@@ -113,9 +111,9 @@ const translations = {
             subtitle: 'من أنا',
             title: 'بناء حلول رقمية',
             titleHighlight: 'بأمان عالي',
-            description1: 'أنا مطور برمجيات متخصص في إنشاء تطبيقات قوية وآمنة وسهلة الاستخدام. أجمع بين الخبرة التقنية والتركيز على أمان البرمجيات.',
-            description2: 'من تصميم مواقع الويب إلى بناء برامج سطح المكتب وفهم أساسيات أمن الشبكات، أقدم رؤية شاملة لكل مشروع أعمل عليه.',
-            focusTitle: 'مجالات تخصصي',
+            description1: 'أنا مطور برمجيات متخصص في إنشاء تطبيقات قوية وآمنة وسهلة الاستخدامن مع فريقي و أجمع بين الخبرة التقنية والتركيز على أمان البرمجيات.',
+            description2: 'من تصميم مواقع الويب إلى بناء برامج سطح المكتب وفهم أساسيات أمن الشبكات، نقدم رؤية شاملة لكل مشروع نعمل عليه.',
+            focusTitle: 'مجالات التخصص',
             focuses: [
                 'تطوير مواقع الويب',
                 'تطوير برامج سطح المكتب',
@@ -129,7 +127,7 @@ const translations = {
         // Skills
         skills: {
             subtitle: 'المهارات والخبرات',
-            title: 'التقنيات التي أستخدمها'
+            title: 'التقنيات التي نستخدمها'
         },
         // Projects
         projects: {
@@ -160,7 +158,7 @@ const translations = {
         // Footer
         footer: {
             tagline: 'بناء حلول رقمية آمنة',
-            copyright: 'جميع الحقوق محفوظة',
+            copyright: 'هاشم جميع الحقوق محفوظة',
             madeWith: 'صُنع بـ',
             using: 'React و TailwindCSS'
         }

@@ -1,55 +1,59 @@
 import { motion } from 'framer-motion';
+import { useTheme } from '../../context/ThemeContext';
 
 const Button = ({
-    children,
-    variant = 'primary',
-    href,
-    onClick,
-    className = '',
-    ...props
+  children,
+  variant = 'primary',
+  href,
+  onClick,
+  type = 'button',
+  className = '',
+  disabled = false,
+  ...props
 }) => {
-    const baseStyles = `
-    relative inline-flex items-center justify-center px-6 py-3 
-    font-semibold text-sm rounded-lg transition-all duration-300
-    focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2
-    btn-shine cursor-pointer
-  `;
+  const { darkMode } = useTheme();
 
-    const variants = {
-        primary: `
-      bg-gradient-to-r from-blue-600 to-purple-600 text-white
-      hover:from-blue-500 hover:to-purple-500
-      focus-visible:ring-purple-500 dark:focus-visible:ring-offset-gray-900
-      shadow-lg shadow-purple-500/25 hover:shadow-purple-500/40
-    `,
-        secondary: `
-      bg-transparent border-2 border-gray-300 dark:border-gray-600
-      text-gray-700 dark:text-gray-200
-      hover:border-purple-500 hover:text-purple-500
-      dark:hover:border-purple-400 dark:hover:text-purple-400
-      focus-visible:ring-gray-400
-    `,
-        ghost: `
-      bg-white/10 backdrop-blur-sm text-white
-      hover:bg-white/20 border border-white/20
-      focus-visible:ring-white
-    `
-    };
+  const getVariantClasses = () => {
+    if (variant === 'primary') {
+      return darkMode
+        ? 'bg-[#0B0B0B] border-2 border-[#E10600] text-white hover:bg-[#E10600] shadow-lg'
+        : 'bg-[#6366F1] border-2 border-[#6366F1] text-white hover:bg-[#4F46E5] hover:border-[#4F46E5] shadow-lg';
+    }
+    if (variant === 'secondary') {
+      return darkMode
+        ? 'bg-transparent border-2 border-[#1F1F1F] text-white hover:border-[#E10600] hover:text-[#E10600]'
+        : 'bg-transparent border-2 border-[#E2E8F0] text-[#1A1A2E] hover:border-[#6366F1] hover:text-[#6366F1]';
+    }
+    return 'bg-transparent border-none text-gray-500 hover:text-gray-700';
+  };
 
-    const Component = href ? motion.a : motion.button;
+  const baseClasses = `
+        inline-flex items-center justify-center
+        px-6 py-3 rounded-xl
+        font-semibold
+        transition-all duration-200 ease-out
+        ${disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}
+        ${getVariantClasses()}
+        ${className}
+    `;
 
-    return (
-        <Component
-            href={href}
-            onClick={onClick}
-            className={`${baseStyles} ${variants[variant]} ${className}`}
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            {...props}
-        >
-            {children}
-        </Component>
-    );
+  const MotionComponent = href ? motion.a : motion.button;
+
+  return (
+    <MotionComponent
+      href={href}
+      onClick={onClick}
+      type={!href ? type : undefined}
+      disabled={disabled}
+      className={baseClasses}
+      whileHover={!disabled ? { scale: 1.02 } : {}}
+      whileTap={!disabled ? { scale: 0.98 } : {}}
+      transition={{ duration: 0.15 }}
+      {...props}
+    >
+      {children}
+    </MotionComponent>
+  );
 };
 
 export default Button;

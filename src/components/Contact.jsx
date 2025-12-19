@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import SectionWrapper from './common/SectionWrapper';
 import Button from './common/Button';
+import { ScrollReveal } from './common/ScrollReveal';
 import {
     HiMail,
     HiUser,
@@ -15,36 +16,38 @@ import {
     FaLinkedinIn
 } from 'react-icons/fa';
 import { useLanguage } from '../context/LanguageContext';
+import { useTheme } from '../context/ThemeContext';
 
 const socialLinks = [
     {
         name: 'Facebook',
         icon: FaFacebookF,
         url: 'https://web.facebook.com/Hacham.Hemida.Tadj.eddin/',
-        color: 'hover:bg-blue-600 hover:border-blue-600'
+        hoverColor: '#1877F2'
     },
     {
         name: 'Instagram',
         icon: FaInstagram,
         url: 'https://www.instagram.com/whoshachem/',
-        color: 'hover:bg-gradient-to-br hover:from-purple-600 hover:to-pink-600 hover:border-pink-600'
+        hoverColor: '#E4405F'
     },
     {
         name: 'WhatsApp',
         icon: FaWhatsapp,
         url: 'https://wa.me/0542557621',
-        color: 'hover:bg-green-600 hover:border-green-600'
+        hoverColor: '#25D366'
     },
     {
         name: 'LinkedIn',
         icon: FaLinkedinIn,
         url: 'https://www.linkedin.com/in/hamida-hachem-tadj-eddin-111b45379/',
-        color: 'hover:bg-blue-700 hover:border-blue-700'
+        hoverColor: '#0A66C2'
     }
 ];
 
 const Contact = () => {
     const { t, isRTL } = useLanguage();
+    const { darkMode } = useTheme();
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -65,8 +68,6 @@ const Contact = () => {
         setIsSubmitting(true);
 
         try {
-            // Replace 'YOUR_FORMSPREE_ID' with your actual Formspree form ID
-            // Get one free at: https://formspree.io
             const response = await fetch('https://formspree.io/f/xblnnnvr', {
                 method: 'POST',
                 headers: {
@@ -91,53 +92,66 @@ const Contact = () => {
         }
 
         setIsSubmitting(false);
-
-        // Clear status after 5 seconds
         setTimeout(() => setSubmitStatus(null), 5000);
     };
 
     return (
-        <SectionWrapper id="contact" className="bg-white dark:bg-gray-900">
+        <SectionWrapper id="contact">
             <div className={`grid lg:grid-cols-2 gap-12 lg:gap-16 ${isRTL ? 'lg:grid-flow-dense' : ''}`}>
                 {/* Left side - Info */}
-                <motion.div
-                    initial={{ opacity: 0, x: isRTL ? 30 : -30 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
-                    className={isRTL ? 'lg:col-start-2' : ''}
-                >
-                    <h2 className={`text-sm font-semibold text-purple-600 dark:text-purple-400 uppercase tracking-wider mb-3 ${isRTL ? 'text-right' : ''}`}>
+                <ScrollReveal direction="left" className={isRTL ? 'lg:col-start-2' : ''}>
+                    <h2
+                        className={`text-sm font-semibold uppercase tracking-wider mb-3 ${isRTL ? 'text-right' : ''}`}
+                        style={{ color: 'var(--color-accent)' }}
+                    >
                         {t('contact.subtitle')}
                     </h2>
-                    <h3 className={`text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6 ${isRTL ? 'text-right' : ''}`}>
+                    <h3
+                        className={`text-3xl md:text-4xl font-bold mb-6 ${isRTL ? 'text-right' : ''}`}
+                        style={{ color: 'var(--color-text-primary)' }}
+                    >
                         {t('contact.title')}{' '}
                         <span className="gradient-text">{t('contact.titleHighlight')}</span>
                     </h3>
-                    <p className={`text-gray-600 dark:text-gray-400 text-lg mb-8 leading-relaxed ${isRTL ? 'text-right' : ''}`}>
+                    <p
+                        className={`text-lg mb-8 leading-relaxed ${isRTL ? 'text-right' : ''}`}
+                        style={{ color: 'var(--color-text-secondary)' }}
+                    >
                         {t('contact.description')}
                     </p>
 
                     {/* Social Links */}
                     <div className="space-y-4">
-                        <h4 className={`text-sm font-semibold text-gray-900 dark:text-white uppercase tracking-wider ${isRTL ? 'text-right' : ''}`}>
+                        <h4
+                            className={`text-sm font-semibold uppercase tracking-wider ${isRTL ? 'text-right' : ''}`}
+                            style={{ color: 'var(--color-text-primary)' }}
+                        >
                             {t('contact.connectTitle')}
                         </h4>
                         <div className={`flex gap-4 ${isRTL ? 'justify-end' : ''}`}>
-                            {socialLinks.map((social) => (
+                            {socialLinks.map((social, index) => (
                                 <motion.a
                                     key={social.name}
                                     href={social.url}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className={`
-                    p-3 rounded-xl border-2 border-gray-200 dark:border-gray-700
-                    text-gray-600 dark:text-gray-400
-                    transition-all duration-300
-                    hover:text-white hover:scale-110
-                    ${social.color}
-                  `}
-                                    whileHover={{ y: -5 }}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: index * 0.1 }}
+                                    className="p-3 rounded-xl transition-all duration-300"
+                                    style={{
+                                        color: 'var(--color-text-secondary)',
+                                        border: '2px solid var(--color-border)',
+                                        backgroundColor: 'var(--color-bg-card)'
+                                    }}
+                                    whileHover={{
+                                        y: -5,
+                                        scale: 1.1,
+                                        backgroundColor: social.hoverColor,
+                                        borderColor: social.hoverColor,
+                                        color: '#FFFFFF'
+                                    }}
                                     whileTap={{ scale: 0.95 }}
                                     aria-label={`Visit my ${social.name} profile`}
                                 >
@@ -150,20 +164,21 @@ const Contact = () => {
                     {/* Decorative element */}
                     <div className="hidden lg:block mt-12">
                         <div className="relative">
-                            <div className="w-64 h-64 bg-gradient-to-br from-purple-500/20 to-blue-500/20 rounded-full blur-3xl" />
+                            <div
+                                className="w-64 h-64 rounded-full blur-3xl"
+                                style={{ background: 'var(--gradient-glow)', opacity: 0.5 }}
+                            />
                             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
                                 <div className="text-6xl animate-float">📬</div>
                             </div>
                         </div>
                     </div>
-                </motion.div>
+                </ScrollReveal>
 
                 {/* Right side - Form */}
-                <motion.div
-                    initial={{ opacity: 0, x: isRTL ? -30 : 30 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
+                <ScrollReveal
+                    direction="right"
+                    delay={0.2}
                     className={isRTL ? 'lg:col-start-1 lg:row-start-1' : ''}
                 >
                     <form onSubmit={handleSubmit} className="space-y-6">
@@ -171,12 +186,16 @@ const Contact = () => {
                         <div className="relative">
                             <label
                                 htmlFor="name"
-                                className={`block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2 ${isRTL ? 'text-right' : ''}`}
+                                className={`block text-sm font-medium mb-2 ${isRTL ? 'text-right' : ''}`}
+                                style={{ color: 'var(--color-text-secondary)' }}
                             >
                                 {t('contact.form.name')}
                             </label>
                             <div className="relative">
-                                <HiUser className={`absolute top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 ${isRTL ? 'right-4' : 'left-4'}`} />
+                                <HiUser
+                                    className={`absolute top-1/2 -translate-y-1/2 w-5 h-5 ${isRTL ? 'right-4' : 'left-4'}`}
+                                    style={{ color: 'var(--color-text-muted)' }}
+                                />
                                 <input
                                     type="text"
                                     id="name"
@@ -186,16 +205,15 @@ const Contact = () => {
                                     required
                                     placeholder={t('contact.form.namePlaceholder')}
                                     className={`
-                    w-full py-4 rounded-xl
-                    bg-gray-50 dark:bg-gray-800/50
-                    border-2 border-gray-200 dark:border-gray-700
-                    text-gray-900 dark:text-white
-                    placeholder-gray-400
-                    focus:border-purple-500 dark:focus:border-purple-500
-                    focus:ring-0 outline-none
-                    transition-colors
-                    ${isRTL ? 'pr-12 pl-4 text-right' : 'pl-12 pr-4'}
-                  `}
+                                        w-full py-4 rounded-xl
+                                        outline-none transition-colors
+                                        ${isRTL ? 'pr-12 pl-4 text-right' : 'pl-12 pr-4'}
+                                    `}
+                                    style={{
+                                        backgroundColor: 'var(--color-bg-card)',
+                                        border: '2px solid var(--color-border)',
+                                        color: 'var(--color-text-primary)'
+                                    }}
                                     dir={isRTL ? 'rtl' : 'ltr'}
                                 />
                             </div>
@@ -205,12 +223,16 @@ const Contact = () => {
                         <div className="relative">
                             <label
                                 htmlFor="email"
-                                className={`block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2 ${isRTL ? 'text-right' : ''}`}
+                                className={`block text-sm font-medium mb-2 ${isRTL ? 'text-right' : ''}`}
+                                style={{ color: 'var(--color-text-secondary)' }}
                             >
                                 {t('contact.form.email')}
                             </label>
                             <div className="relative">
-                                <HiMail className={`absolute top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 ${isRTL ? 'right-4' : 'left-4'}`} />
+                                <HiMail
+                                    className={`absolute top-1/2 -translate-y-1/2 w-5 h-5 ${isRTL ? 'right-4' : 'left-4'}`}
+                                    style={{ color: 'var(--color-text-muted)' }}
+                                />
                                 <input
                                     type="email"
                                     id="email"
@@ -220,16 +242,15 @@ const Contact = () => {
                                     required
                                     placeholder={t('contact.form.emailPlaceholder')}
                                     className={`
-                    w-full py-4 rounded-xl
-                    bg-gray-50 dark:bg-gray-800/50
-                    border-2 border-gray-200 dark:border-gray-700
-                    text-gray-900 dark:text-white
-                    placeholder-gray-400
-                    focus:border-purple-500 dark:focus:border-purple-500
-                    focus:ring-0 outline-none
-                    transition-colors
-                    ${isRTL ? 'pr-12 pl-4 text-right' : 'pl-12 pr-4'}
-                  `}
+                                        w-full py-4 rounded-xl
+                                        outline-none transition-colors
+                                        ${isRTL ? 'pr-12 pl-4 text-right' : 'pl-12 pr-4'}
+                                    `}
+                                    style={{
+                                        backgroundColor: 'var(--color-bg-card)',
+                                        border: '2px solid var(--color-border)',
+                                        color: 'var(--color-text-primary)'
+                                    }}
                                     dir="ltr"
                                 />
                             </div>
@@ -239,12 +260,16 @@ const Contact = () => {
                         <div className="relative">
                             <label
                                 htmlFor="message"
-                                className={`block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2 ${isRTL ? 'text-right' : ''}`}
+                                className={`block text-sm font-medium mb-2 ${isRTL ? 'text-right' : ''}`}
+                                style={{ color: 'var(--color-text-secondary)' }}
                             >
                                 {t('contact.form.message')}
                             </label>
                             <div className="relative">
-                                <HiChatAlt2 className={`absolute top-4 w-5 h-5 text-gray-400 ${isRTL ? 'right-4' : 'left-4'}`} />
+                                <HiChatAlt2
+                                    className={`absolute top-4 w-5 h-5 ${isRTL ? 'right-4' : 'left-4'}`}
+                                    style={{ color: 'var(--color-text-muted)' }}
+                                />
                                 <textarea
                                     id="message"
                                     name="message"
@@ -254,16 +279,15 @@ const Contact = () => {
                                     rows={5}
                                     placeholder={t('contact.form.messagePlaceholder')}
                                     className={`
-                    w-full py-4 rounded-xl
-                    bg-gray-50 dark:bg-gray-800/50
-                    border-2 border-gray-200 dark:border-gray-700
-                    text-gray-900 dark:text-white
-                    placeholder-gray-400
-                    focus:border-purple-500 dark:focus:border-purple-500
-                    focus:ring-0 outline-none
-                    transition-colors resize-none
-                    ${isRTL ? 'pr-12 pl-4 text-right' : 'pl-12 pr-4'}
-                  `}
+                                        w-full py-4 rounded-xl
+                                        outline-none transition-colors resize-none
+                                        ${isRTL ? 'pr-12 pl-4 text-right' : 'pl-12 pr-4'}
+                                    `}
+                                    style={{
+                                        backgroundColor: 'var(--color-bg-card)',
+                                        border: '2px solid var(--color-border)',
+                                        color: 'var(--color-text-primary)'
+                                    }}
                                     dir={isRTL ? 'rtl' : 'ltr'}
                                 />
                             </div>
@@ -294,7 +318,12 @@ const Contact = () => {
                             <motion.div
                                 initial={{ opacity: 0, y: 10 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                className={`p-4 rounded-xl bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-center font-medium ${isRTL ? 'text-right' : ''}`}
+                                className={`p-4 rounded-xl text-center font-medium ${isRTL ? 'text-right' : ''}`}
+                                style={{
+                                    backgroundColor: 'rgba(34, 197, 94, 0.1)',
+                                    border: '1px solid rgba(34, 197, 94, 0.3)',
+                                    color: '#22C55E'
+                                }}
                             >
                                 {t('contact.form.success')}
                             </motion.div>
@@ -305,13 +334,18 @@ const Contact = () => {
                             <motion.div
                                 initial={{ opacity: 0, y: 10 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                className={`p-4 rounded-xl bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400 text-center font-medium ${isRTL ? 'text-right' : ''}`}
+                                className={`p-4 rounded-xl text-center font-medium ${isRTL ? 'text-right' : ''}`}
+                                style={{
+                                    backgroundColor: 'rgba(239, 68, 68, 0.1)',
+                                    border: '1px solid rgba(239, 68, 68, 0.3)',
+                                    color: '#EF4444'
+                                }}
                             >
                                 {t('contact.form.error')}
                             </motion.div>
                         )}
                     </form>
-                </motion.div>
+                </ScrollReveal>
             </div>
         </SectionWrapper>
     );

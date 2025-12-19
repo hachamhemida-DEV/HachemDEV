@@ -6,7 +6,7 @@ export const skillsData = [
         title: 'Web Development',
         titleAr: 'تطوير المواقع',
         icon: FaCode,
-        color: 'from-blue-500 to-cyan-500',
+        color: 'from-red-600 to-red-800',
         skills: [
             'HTML5 & Semantic Markup',
             'CSS3 & Modern Layouts',
@@ -22,7 +22,7 @@ export const skillsData = [
         title: 'Desktop Applications',
         titleAr: 'تطبيقات سطح المكتب',
         icon: FaDesktop,
-        color: 'from-purple-500 to-pink-500',
+        color: 'from-red-500 to-red-700',
         skills: [
             'C# & .NET Framework',
             'Windows Forms',
@@ -37,7 +37,7 @@ export const skillsData = [
         title: 'Cyber Security',
         titleAr: 'الأمن السيبراني',
         icon: FaShieldAlt,
-        color: 'from-green-500 to-emerald-500',
+        color: 'from-red-700 to-red-900',
         skills: [
             'Network Security',
             'Access Control',
@@ -53,7 +53,7 @@ export const skillsData = [
         title: 'IT & Systems',
         titleAr: 'تقنية المعلومات',
         icon: FaServer,
-        color: 'from-orange-500 to-red-500',
+        color: 'from-red-600 to-red-900',
         skills: [
             'Linux Administration',
             'Windows Systems',
