@@ -56,8 +56,8 @@ export const projectsData = [
         domain: 'Web',
         domainAr: 'ويب',
         technologies: ['HTML', 'CSS', 'JavaScript'],
-        github: 'https://hachamhemida-dev.github.io/typing-Speed-test/',
-        live: '#'
+        github: 'https://github.com/hachamhemida-DEV/typing-Speed-test',
+        live: 'https://hachamhemida-dev.github.io/typing-Speed-test/'
     }
 ];
 
