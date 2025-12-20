@@ -46,6 +46,18 @@ export const projectsData = [
         technologies: ['React', 'Vite', 'TailwindCSS', 'Framer Motion'],
         github: '#',
         live: '#'
+    },
+    {
+        id: 5,
+        title: 'Typing Speed Test',
+        titleAr: 'اختبار سرعة الكتابة',
+        description: 'Interactive typing speed test application that measures WPM, accuracy, and provides real-time feedback with dynamic text highlighting and comprehensive statistics.',
+        descriptionAr: 'تطبيق تفاعلي لاختبار سرعة الكتابة يقيس عدد الكلمات في الدقيقة والدقة ويوفر ردود فعل فورية مع إحصائيات شاملة.',
+        domain: 'Web',
+        domainAr: 'ويب',
+        technologies: ['HTML', 'CSS', 'JavaScript'],
+        github: 'https://github.com/HachemDEV/typing-test',
+        live: '#'
     }
 ];
 
